@@ -1,0 +1,87 @@
+@import '../../.cache/hellwal/waybar-colors.css';
+
+@define-color bg-color  @color7;
+@define-color c1 	@color2;
+@define-color c2 	@color6;
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "fira code Nerd Font";
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: alpha(@c2, 0.99);
+    border-radius: 10px;
+}
+
+#custom-wallpaper,
+#custom-lightmode,
+#custom-power,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio {
+    padding: 0 10px;
+    margin: 6px 0;
+    color: @c1;
+    border-radius: 10px;
+}
+
+#custom-lightmode{
+    background-color: @bg-color;
+}
+
+#clock {
+    background-color: @bg-color;
+    margin-left: 10px;
+}
+
+#battery {
+    background-color: @bg-color;
+}
+
+#battery.charging {
+    background-color: #CB841D;
+}
+
+#cpu {
+    background-color: @bg-color;
+}
+
+#memory {
+    background-color: @bg-color;
+}
+
+#temperature {
+    background-color: @bg-color;
+}
+
+#temperature.critical {
+    background-color: #CA99A7;
+}
+
+#pulseaudio {
+    background-color: @bg-color;
+}
+
+#pulseaudio.muted {
+    background-color: #8B7E4B;
+}
+
+#custom-wallpaper{
+    background-color: @bg-color;
+    padding-right: 12px;
+}
+#custom-power{
+    background-color: @bg-color;
+    margin-right: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right: 12px;
+}

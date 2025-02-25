@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+wallpaper_dir="$HOME/pix/wallpapers"
+lightmode_lock="$HOME/.cache/lightmode"
+lightmode="$(cat ${lightmode_lock})"
+
+if [ "$1" == "toggle" ]; then
+  [[ $lightmode == "1" ]] && lightmode=0 || lightmode=1
+  echo $lightmode > $lightmode_lock
+fi
+
+# Fetch colors
+source ~/.cache/hellwal/variables.sh
+
+# Randomize new wallpaper or change to light mode
+if [ ! -z "$1" ]; then
+  if [ "$lightmode" == "1" ]; then
+    hellwal -i "$wallpaper" "-l"
+    waybar_swapcolors
+    firefox_swapcolors
+  else
+    hellwal -i "$wallpaper" "-d"
+    firefox_swapcolors
+  fi
+else 
+  if [ "$lightmode" == "1" ]; then
+    hellwal -i "$(randomize_unique_wallpaper ${wallpaper_dir})" -l
+    waybar_swapcolors
+    firefox_swapcolors
+  else
+    hellwal -i "$(randomize_unique_wallpaper ${wallpaper_dir})" -d
+    firefox_swapcolors
+  fi
+fi
+
+# Fetch colors
+source ~/.cache/hellwal/variables.sh
+
+# Bar
+waybar_reset &
+
+# Wallpaper
+swww img "$wallpaper" -t random --transition-step 1 --transition-duration 0.4 --transition-fps 60
+
+# Rofi
+cp ~/.cache/hellwal/rofi.rasi ~/.config/rofi/config.rasi
+
+# Firefox
+cp ~/.cache/hellwal/pywalfox.json ~/.cache/wal/colors.json
+pywalfox update

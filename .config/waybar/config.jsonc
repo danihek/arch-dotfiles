@@ -1,0 +1,64 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+
+    "modules-left": ["clock", "custom/wallpaper"],
+    "modules-center": ["cpu", "custom/lightmode", "memory"],
+    "modules-right": ["pulseaudio", "battery","custom/power"],
+
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a, %d. %b  %H:%M}",
+        "tooltip": false
+    },
+
+
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "on-click": "alacritty -e btop &",
+        "interval": 1
+    },
+
+    "custom/lightmode": {
+        "format": " ",
+        "format-alt": " ",
+        "tooltip": false,
+        "on-click": "wallset toggle"
+    },
+
+
+    "memory": {
+        "on-click": "alacritty -e btop &",
+        "format": "  {}%",
+        "interval": 1
+
+    },
+
+    "battery": {
+        "format": "  {capacity}%",
+        "format-charging": "⚡ {capacity}%",
+        "format-plugged": " {capacity}%"
+
+    },
+
+    "pulseaudio": {
+        "format": "   {volume}%",
+        "format-muted": "  Muted"
+    },
+    "custom/wallpaper":{
+	    "format": "󰸉",
+        "tooltip": false,
+	    "on-click": "wallset"
+    },
+    "custom/power":{
+	    "format": "⏻",
+        "tooltip": false,
+	    "on-click": "wlogout"
+    }
+}
+
