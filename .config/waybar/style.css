@@ -18,6 +18,19 @@ window#waybar {
     border-radius: 10px;
 }
 
+#workspaces button {
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 500px;
+    background: @bg-color;
+    transition: min-width 0.3s ease;
+    margin: 7px 5px;
+}
+
+#workspaces button.active {
+    min-width: 30px;
+    background: @c1;
+}
 #custom-wallpaper,
 #custom-lightmode,
 #custom-power,
@@ -68,10 +81,6 @@ window#waybar {
 
 #pulseaudio {
     background-color: @bg-color;
-}
-
-#pulseaudio.muted {
-    background-color: #8B7E4B;
 }
 
 #custom-wallpaper{

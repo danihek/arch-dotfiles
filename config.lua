@@ -44,7 +44,7 @@ keyboard(
     59,             -- rate
     221             -- delay
     )
-keyboard("default", "us", 51, 205)
+keyboard("default", "pl", 51, 205)
 keyboard("Sleep Button", "de", 61, 184)
 keyboard("ckb1: CORSAIR K68 RGB Mechanical Gaming Keyboard vKB", "pl", 50, 200)
 
@@ -108,8 +108,23 @@ bind(MAIN_MOD .. ", Escape", "kill_server")  -- Kill HellWM
 
 -- Set environment variables
 env("EDITOR", "nvim")
-env("GTK_THEME", "Nordic")
-env("OZONE_PLATFORM", "wayland")
+env("BROWSER ", "firefox")
+
+env("QT_QPA_PLATFORM", "wayland")
+env("XDG_SESSION_TYPE", "wayland")
+
+env("QT_STYLE_OVERRIDE", "kvantum")
+env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+
+env("XCURSOR_SIZE", "24")
+env("MOZ_ENABLE_WAYLAND", "1")
+
+env("XDG_CURRENT_DESKTOP", "hellwm")
+env("XDG_SESSION_DESKTOP", "hellwm")
+env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+
+
 
 -- Exec daemons etc.
 exec(WALLPAPER_DAEMON)
@@ -120,28 +135,30 @@ exec(TERMINAL)
 layout(3)
 
 -- Decoration
-border_width(0)
 border_width(3)
-inner_gap(50)
+inner_gap(10)
 outer_gap(10)
 
 fade_duration(0.3)
 
-animation_duration(0)
-animation_bezier(0.0, 1.12, 1.28, 1)
-
---animation_duration(1.4)
+--animation_duration(1)
+animation_duration(0.6)
+animation_duration(1)
+animation_bezier(0, 0.5, 1.25, 1)
+--animation_bezier(0.0, 1, 0.5, 1)
+--animation_bezier(0.0, 1.12, 1.28, 1)
 --animation_bezier(0.1, 1.12, -0.5, 1) -- Thats funny af, try it :D
 
-    -- Types of animation directions
+    -- Types of animation
 --animation_direction("left")
 --animation_direction("right")
 --animation_direction("up")
 --animation_direction("down")
 --animation_direction("shrink")
 animation_direction("grow")
+--animation_direction("solid")
 
     -- Border colors imported from Hellwal
 dofile(os.getenv("HOME") .. "/.cache/hellwal/hellwm.lua")
-border_inactive_color(color4)
-border_active_color(color13)
+border_inactive_color(color5)
+border_active_color(color12)

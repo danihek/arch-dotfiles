@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+wallpaper_dir="$1"
+
+# Ensure the wallpaper directory exists
+if [[ ! -d "$wallpaper_dir" ]]; then
+  echo "Wallpaper directory does not exist!"
+  exit 1
+fi
+
+# Find all wallpaper image files (supports jpg, png, jpeg, gif, bmp)
+wallpapers=($(find "$wallpaper_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.bmp" \)))
+
+# Check if there are any wallpaper images in the directory
+if [[ ${#wallpapers[@]} -eq 0 ]]; then
+  echo "No wallpapers found in the directory!"
+  exit 1
+fi
+
+# Read the last used wallpaper from the cache file (if exists)
+current_wallpaper=$(cat "$HOME/.cache/current_wallpaper_name" 2>/dev/null)
+
+# Select a random wallpaper that is different from the current one
+selected_wallpaper=""
+while true; do
+  selected_wallpaper=$(shuf -n 1 -e "${wallpapers[@]}")
+  if [[ "$selected_wallpaper" != "$current_wallpaper" ]]; then
+    break
+  fi
+done
+
+# Store the name of the selected wallpaper in the cache file
+echo "$selected_wallpaper" > "$HOME/.cache/current_wallpaper_name"
+
+# Yell at me!
+echo "$selected_wallpaper"
