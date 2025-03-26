@@ -8,8 +8,22 @@
     "margin-right": 10,
 
     "modules-left": ["clock", "custom/wallpaper", "custom/lightmode"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "battery","custom/power"],
+    "modules-center": ["custom/active_workspace", "custom/active_toplevel"],
+    "modules-right": ["network", "pulseaudio", "battery","custom/power"],
+
+    "custom/active_workspace": {
+        "exec": "~/.scripts/active_workspace.sh",
+        "format": "Workspace {}", 
+        "interval": 1,
+        "tooltip": false
+    },
+
+    "custom/active_toplevel": {
+        "exec": "~/.scripts/active_toplevel.sh",
+        "format": "{}", 
+        "interval": 1,
+        "tooltip": false
+    },
 
     "clock": {
         "format": " {:%H:%M}",
@@ -22,6 +36,21 @@
         "format": "󰻠 {usage}%",
         "on-click": "alacritty -e btop &",
         "interval": 1
+    },
+
+    "network": {
+        "interface": "wlan0",
+        "format": "{ifname}",
+        "format-alt": "{ipaddr}",
+        "format-wifi": "{essid}  ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "format-disconnected": "",
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "max-length": 50
+        //"on-click": "/home/danihek/tmp/iwdrof/iwdrof.sh"
     },
 
     "custom/lightmode": {

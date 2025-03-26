@@ -1,0 +1,127 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "height": 0,
+
+    "margin-top": 8,
+    "margin-right": 8,
+    "margin-bottom": 0,
+    "margin-left": 8,
+
+    "modules-left": [
+        "custom/launcher",
+	"custom/active_workspace",
+	"custom/active_toplevel"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "cpu_text",
+        "cpu",
+        "memory",
+        "battery",
+        "network",
+        "pulseaudio",
+    ],
+
+    "custom/active_workspace": {
+        "exec": "~/.scripts/active_workspace.sh",
+        "format": "Workspace {}", 
+        "interval": 1,
+        "tooltip": false
+    },
+
+    "custom/active_toplevel": {
+        "exec": "~/.scripts/active_toplevel.sh",
+        "format": "{}", 
+        "interval": 1,
+        "tooltip": false
+    },
+
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "rofi -show drun",
+        "on-click-right": "killall rofi",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1" : "一",
+            "2" : "二",
+            "3" : "三",
+            "4" : "四",
+            "5" : "五",
+            "6" : "六",
+            "7" : "七",
+            "8" : "八",
+            "9" : "九",
+            "10": "十"
+        },
+    },
+
+    "tray": {
+        "spacing": 10,
+    },
+
+    "clock": {
+        "format": "{:%H:%M - %a, %d %b %Y}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 95
+        }
+    },
+
+    "memory": {
+        "format": "mem {percentage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 98
+        }
+    },
+
+    "battery": {
+        "format": "bat {capacity}%",
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi" : "wifi {bandwidthDownBits}",
+        "format-ethernet": "enth {bandwidthDownBits}",
+        "format-disconnected" : "no network",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "scroll-step": 5,
+        "max-volume": 150,
+        "format": "vol {volume}%",
+        "format-bluetooth": "vol {volume}%",
+        "nospacing": 1,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+
+	"reload_on_style_change": true,
+}

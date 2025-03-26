@@ -1,0 +1,135 @@
+@import '../../../.cache/hellwal/waybar-colors.css';
+
+* {
+    border: none;
+    min-height: 0;
+    font-family: "JetBrains Nerd Font Mono";
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0;
+}
+
+window#waybar {
+    background: @background;
+    border: 2px solid @foreground;
+    border-radius: 4px;
+}
+
+tooltip {
+    background-color: @background;
+    border: 2px solid @color14;
+    font-size: 2px;
+}
+
+tooltip label {
+	margin: 8px;
+}
+
+#clock,
+#tray,
+#cpu,
+#memory,
+#battery,
+#network,
+#pulseaudio,
+#custom-active_workspace,
+#custom-active_toplevel,
+#language {
+    margin: 6px 6px 6px 0px;
+    padding: 2px 8px;
+	border-radius: 4px;
+}
+
+#workspaces {
+    margin: 6px 0px 6px 6px;
+    border-radius: 4px;
+}
+
+#workspaces button {
+    all: initial;
+    min-width: 0;
+    box-shadow: inset 0 -3px transparent;
+    padding: 2px 4px;
+    color: @color14;
+    background-color: @background;
+    border: 2px solid @color14;
+    border-radius: 4px;
+    margin-right: 2px;
+}
+
+#workspaces button.active {
+    color: #000000;
+    background-color: @color14;
+}
+
+#workspaces button.urgent {
+    background-color: @color7;
+    color: #000000;
+	border: 2px solid @color7;
+}
+
+#clock {
+    background-color: @color14;
+    border: 2px solid @background;
+    color: #000000;
+}
+
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#battery,
+#tray,
+#language,
+#custom-active_toplevel,
+#custom-active_workspace {
+    background-color: @background;
+    border: 2px solid @color14;
+    color: @color14;
+}
+
+#network {
+	min-width: 100px;
+}
+
+#cpu,
+#memory,
+#battery,
+#pulseaudio,
+#custom-active_toplevel,
+#custom-active_workspace {
+	min-width: 60px;
+}
+
+#cpu.critical,
+#memory.critical {
+    color: @color7;
+    border: 2px solid @color7;
+}
+
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+    color: @color7;
+    border: 2px solid @color7;
+}
+
+#custom-launcher {
+	font-size: 20px;
+	padding-left: 10px;
+	padding-right: 5px;
+	transition: none;
+	color: @color14;
+}
+
+#custom-control {
+	font-size: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	transition: none;
+	color: @color14;
+}
+
+#language {
+	min-width: 20px;
+}

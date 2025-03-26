@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# File containing the original color definitions
+input_file="$HOME/.cache/hellwal/waybar-colors.css"
+
+# Read the color definitions from the file into an array
+declare -A colors
+
+# Populate the colors array from the input file
+while IFS=' ' read -r key value; do
+    # Skip lines that don't contain color definitions
+    if [[ "$key" == "@define-color" ]]; then
+        color_name=$(echo "$value" | cut -d' ' -f1)
+        color_value=$(echo "$value" | cut -d' ' -f2)
+        colors["$color_name"]=$color_value
+    fi
+done < "$input_file"
+
+temp=${colors["color7"]}
+colors["color7"]=${colors["color0"]}
+colors["color0"]=$temp
+
+temp=${colors["color2"]}
+colors["color2"]=${colors["color15"]}
+colors["color15"]=$temp
+
+temp=${colors["color6"]}
+colors["color6"]=${colors["color8"]}
+colors["color8"]=$temp
+
+# Output the updated color definitions
+echo > $input_file
+
+for color_name in "${!colors[@]}"; do
+    echo "@define-color $color_name ${colors[$color_name]};" | sed -e 's/;;/;/g' >> $input_file 
+done
+

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+KAOMOJI_FILE="$HOME/dox/kaomoji.txt"
+
+if [[ ! -f "$KAOMOJI_FILE" ]]; then
+    echo "Kaomoji file not found!"
+    exit 1
+fi
+
+selected=$(cat "$KAOMOJI_FILE" | rofi -dmenu -p "Select Kaomoji")
+
+if [[ -n "$selected" ]]; then
+    a=$(echo -n "$selected" | cut -d' ' -f1)
+    echo -n $a | wl-copy
+fi

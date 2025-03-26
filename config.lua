@@ -52,14 +52,19 @@ keyboard("ckb1: CORSAIR K68 RGB Mechanical Gaming Keyboard vKB", "pl", 50, 200)
 -- Keybindings
     
 bind(
-    MAIN_MOD .. ", b",     -- keys (for now you can only use combination of max 2
-    "firefox"         -- program name
+    MAIN_MOD .. ", b",     -- keys
+    "firefox"              -- program name
     )
-bind(MAIN_MOD .. ", Return", TERMINAL)
-bind(MAIN_MOD .. ", F12", "pavucontrol")
-bind(MAIN_MOD .. ", F11", "grim")
-bind(MAIN_MOD .. ", w", "wallset")
+bind(MAIN_MOD .. ", w", "wallset")                  -- wallpaper script
+bind(MAIN_MOD .. ", g", "rofmoji")                  -- emoji
+bind(MAIN_MOD .. ", Shift_L, G", "kaomoji_select")  -- kaomoji
+bind(MAIN_MOD .. ", Return", TERMINAL)              -- terminal
 bind(MAIN_MOD .. ", t", LAUNCHER .. " -show drun")
+
+bind(MAIN_MOD .. ", F1", "wallset toggle")
+bind(MAIN_MOD .. ", F2", "waybar_reset toggle")
+bind(MAIN_MOD .. ", F11", "grim")
+bind(MAIN_MOD .. ", F12", "pavucontrol")
 
     -- Screen Brightness
 bind("Alt_L, XF86AudioRaiseVolume", "brightnessctl s +1%")
@@ -77,6 +82,12 @@ bind("XF86AudioStop", "playerctl stop")
     -- Screenshots
 bind(MAIN_MOD .. ", Shift_L, S", "grim -g \"$(slurp -d)\" - | tee >(swappy -f - -o - | wl-copy) | wl-copy")
 
+--bind("Alt_L, 1", "workspace", 1, false, 0, true)
+--bind("Alt_L, 2", "workspace", 2, false, 0, true)
+--bind("Alt_L, 3", "workspace", 3, false, 0, true)
+--bind("Alt_L, 4", "workspace", 4, false, 0, true)
+--bind("Alt_L, 5", "workspace", 5, false, 0, true)
+--bind("Alt_L, 6", "workspace", 6, false, 0, true)
 
 bind(
     MAIN_MOD .. ", 1",   -- keys
@@ -84,7 +95,7 @@ bind(
     1,              -- workspace number
     false,          -- binary workspaces enabled
     1,              -- binary workspaces value
-    true            -- also move active window to this workspace
+    false           -- also move active window to this workspace
     )
 bind(MAIN_MOD .. ", 2", "workspace", 2, false, 0)
 bind(MAIN_MOD .. ", 3", "workspace", 3, false, 0)
@@ -106,6 +117,8 @@ bind(MAIN_MOD .. ", f", "set_fullscreen")    -- Fullscreens active toplevel
 bind(MAIN_MOD .. ", q", "kill_active")       -- Kill Active Window
 bind(MAIN_MOD .. ", Escape", "kill_server")  -- Kill HellWM
 
+bind(MAIN_MOD .. ", s", "switch_toplevels")  -- Switch toplevels (alt tab on windows)
+
 -- Set environment variables
 env("EDITOR", "nvim")
 env("BROWSER ", "firefox")
@@ -124,8 +137,6 @@ env("XDG_CURRENT_DESKTOP", "hellwm")
 env("XDG_SESSION_DESKTOP", "hellwm")
 env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
-
-
 -- Exec daemons etc.
 exec(WALLPAPER_DAEMON)
 exec(BAR)
@@ -137,28 +148,29 @@ layout(3)
 -- Decoration
 border_width(3)
 inner_gap(10)
-outer_gap(10)
+outer_gap(5)
 
-fade_duration(0.3)
+fade_duration(0)
 
 --animation_duration(1)
-animation_duration(0.6)
-animation_duration(1)
-animation_bezier(0, 0.5, 1.25, 1)
+animation_duration(0.7)
+
+animation_bezier(0.0, 1.12, 1.28, 1)
+--animation_bezier(0, 0.5, 1.25, 1)
 --animation_bezier(0.0, 1, 0.5, 1)
---animation_bezier(0.0, 1.12, 1.28, 1)
 --animation_bezier(0.1, 1.12, -0.5, 1) -- Thats funny af, try it :D
 
     -- Types of animation
+animation_direction("right")
 --animation_direction("left")
---animation_direction("right")
 --animation_direction("up")
 --animation_direction("down")
 --animation_direction("shrink")
-animation_direction("grow")
+--animation_direction("grow")
 --animation_direction("solid")
 
-    -- Border colors imported from Hellwal
+    -- Border colors imported from Hellwal,
+    -- so it matches colorscheme
 dofile(os.getenv("HOME") .. "/.cache/hellwal/hellwm.lua")
-border_inactive_color(color5)
-border_active_color(color12)
+border_inactive_color(color6)
+border_active_color(color13)

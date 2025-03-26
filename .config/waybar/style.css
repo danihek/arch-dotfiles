@@ -31,6 +31,27 @@ window#waybar {
     min-width: 30px;
     background: @c1;
 }
+
+#custom-active_workspace {
+    background-color: @bg-color;
+    color: @c1;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    padding: 0 10px;
+    margin: 6px 0;
+    color: @c1;
+    border-radius: 10px;
+}
+
+#custom-active_toplevel {
+    background-color: @bg-color;
+    padding: 0 10px;
+    margin: 6px 0;
+    color: @c1;
+    border-radius: 10px;
+}
+
 #custom-wallpaper,
 #custom-lightmode,
 #custom-power,
@@ -39,6 +60,7 @@ window#waybar {
 #cpu,
 #memory,
 #temperature,
+#network,
 #pulseaudio {
     padding: 0 10px;
     margin: 6px 0;
@@ -53,6 +75,10 @@ window#waybar {
 #clock {
     background-color: @bg-color;
     margin-left: 10px;
+}
+
+#network{
+    background-color: @bg-color;
 }
 
 #battery {

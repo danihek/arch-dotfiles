@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+barmode_lock="$HOME/.cache/barmode"
+barmode="$(cat ${barmode_lock})"
+style1c=$HOME/.config/waybar/config.jsonc
+style1s=$HOME/.config/waybar/style.css
+style2c=$HOME/.config/waybar/2nd/config.jsonc
+style2s=$HOME/.config/waybar/2nd/style.css
+
+pkill waybar
+
+if [ "$1" == "toggle" ]; then
+  [[ $barmode == "1" ]] && barmode=0 || barmode=1
+  echo $barmode > $barmode_lock
+fi
+
+if [[ $barmode == "1" ]]; then
+    waybar -c $style1c -s $style1s
+else
+    waybar -c $style2c -s $style2s
+fi
