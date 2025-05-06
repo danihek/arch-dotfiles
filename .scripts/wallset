@@ -4,6 +4,9 @@ wallpaper_dir="$HOME/pix/wallpapers"
 lightmode_lock="$HOME/.cache/lightmode"
 lightmode="$(cat ${lightmode_lock})"
 
+#hellwal_args=""
+hellwal_args="--neon-mode"
+
 if [ "$1" == "toggle" ]; then
   [[ $lightmode == "1" ]] && lightmode=0 || lightmode=1
   echo $lightmode > $lightmode_lock
@@ -19,30 +22,30 @@ source ~/.cache/hellwal/variables.sh
 # Randomize new wallpaper or change to light mode
 if [ ! -z "$2" ]; then
   if [ "$lightmode" == "1" ]; then
-    hellwal -t "$2" "-l"
+    hellwal -t "$2" "-l" $hellwal_args
     waybar_swapcolors
     firefox_swapcolors
   else
-    hellwal -t "$2" "-d"
+    hellwal -t "$2" "-d" $hellwal_args
     firefox_swapcolors
   fi
 else
   if [ ! -z "$1" ]; then
       if [ "$lightmode" == "1" ]; then
-          hellwal -m -i "$wallpaper" "-l"
+          hellwal -m -i "$wallpaper" "-l" $hellwal_args
           waybar_swapcolors
           firefox_swapcolors
       else
-          hellwal -m -i "$wallpaper" "-d"
+          hellwal -m -i "$wallpaper" "-d" $hellwal_args
           firefox_swapcolors
       fi
   else 
       if [ "$lightmode" == "1" ]; then
-          hellwal -m -i "$(randomize_unique_wallpaper ${wallpaper_dir})" -l
+          hellwal -m -i "$(randomize_unique_wallpaper ${wallpaper_dir})" -l $hellwal_args
           waybar_swapcolors
           firefox_swapcolors
       else
-          hellwal -m -i "$(randomize_unique_wallpaper ${wallpaper_dir})" -d
+          hellwal -m -i "$(randomize_unique_wallpaper ${wallpaper_dir})" -d $hellwal_args
       fi
   fi
 fi

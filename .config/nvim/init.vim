@@ -20,6 +20,21 @@ Plug 'ap/vim-css-color'
 Plug 'windwp/nvim-autopairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'tpope/vim-unimpaired'
+
+" table
+Plug 'dhruvasagar/vim-table-mode'
+
+" commenter
+Plug 'preservim/nerdcommenter'
+
+" telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+
+" dashboard
+Plug 'nvimdev/dashboard-nvim'
+
+" my colorscheme based on hellwal
 Plug 'danihek/hellwal-vim'
 
 call plug#end()
@@ -98,3 +113,70 @@ colorscheme hellwal
 
  inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
  inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<tab>"
+
+ " Telescope
+ 
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+
+" DASHBOARD
+" Plugin install section
+call plug#begin('~/.config/nvim/plugged')
+Plug 'nvimdev/dashboard-nvim'
+Plug 'nvim-telescope/telescope.nvim' " Optional if you use Telescope
+call plug#end()
+
+" Lua configuration block
+lua << EOF
+require('dashboard').setup {
+  config = {
+    shortcut = {
+      {
+        desc = '  Find Files',
+        group = 'Label',
+        key = 'f',
+        action = 'Telescope find_files'
+      },
+      {
+        desc = '  New File',
+        group = 'Label',
+        key = 'n',
+        action = 'enew'
+      },
+      {
+        desc = '  Quit',
+        group = 'DiagnosticError',
+        key = 'q',
+        action = 'qa'
+      },
+    },
+
+    packages = {
+      enable = true,  -- shows how many plugins are loaded
+    },
+
+    project = {
+      enable = true,
+      limit = 8,
+      icon = '📁 ',
+      label = ' Recent Projects',
+      action = 'Telescope find_files cwd=',
+    },
+
+    mru = {
+      enable = true,
+      limit = 10,
+      icon = '🕘 ',
+      label = ' Recent Files',
+      cwd_only = false,
+    },
+
+    footer = {
+      '',
+      '🎉 Sesbian lex coding!',
+    },
+  }
+}
+EOF
+

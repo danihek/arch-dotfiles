@@ -15,7 +15,7 @@ eval "$(zoxide init bash)" # zoxide
 # Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias TODO='vim ~/.TODO.md'
+alias TODO='nvim ~/.TODO.md'
 alias cl='clear ; l'
 alias fucking=sudo
 alias l='lsd -l'
@@ -29,7 +29,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-# Prompts, I use both
+# Prompt
 PS1='\[\e[1;35m\]╔═◇◆ \[\e[1;32m\]だにへく\[\e[1;35m\]◆◇ ═╗\n\[\e[1;36m\]║ \[\e[1;33m\]\u\[\e[1;36m\]＠\h \[ \e[1;36m\]║\n\[\e[1;33m\]╚═◇◆━━━━━━━━━━━━━┛ \[\e[1;36m\]\w \[\e[0m\] \[\e[91m\]$(parse_git_branch)\[\e[00m\]\n ❯ '
 PS1='\[\e[1;33m\]だにへく \[\e[1;36m\]| \[\e[1;32m\]\h \[\e[1;33m\]➜ \[\e[1;36m\]\w \[\e[0m\]'
 
@@ -39,3 +39,5 @@ sh ~/.cache/hellwal/terminal.sh
 
 # External scripts
 PATH="$PATH:/$HOME/.scripts"
+export PATH="/home/danihek/.local/bin:$PATH"
+
